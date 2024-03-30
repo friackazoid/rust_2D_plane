@@ -1,8 +1,6 @@
 mod point;
 
 use point::Point;
-use std::thread;
-use std::time::Duration;
 
 fn main() {
 
@@ -10,14 +8,10 @@ fn main() {
     point.set_target(3.0, -2.0);
 
 
-    let handle = thread::spawn(move || {
-        while point.update (0.1) {
-            let (x, y) = point.get_current_position();
-            println!("x: {}, y: {}", x, y);
-            thread::sleep(Duration::from_millis(100));
-        }
-    });
+    for _ in 0..10 {
+        let (x, y) = point.get_current_position();
+        println!("x: {}, y: {}", x, y);
+        std::thread::sleep(std::time::Duration::from_millis(1));
+    }
 
-
-    handle.join().unwrap();
 }
