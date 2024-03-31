@@ -3,8 +3,8 @@
 use std::sync::{Arc, RwLock};
 
 pub struct Point {
-    position: Arc<RwLock<(f64, f64)>>,
-    target: (f64, f64),
+    position: Arc<RwLock<(f32, f32)>>,
+    target: (f32, f32),
 
     update_thread: Option<std::thread::JoinHandle<()>>,
 }
@@ -18,7 +18,7 @@ impl Drop for Point {
 }
 
 impl Point {
-    pub fn new(x: f64, y: f64) -> Point {
+    pub fn new(x: f32, y: f32) -> Point {
         Point {
             position: Arc::new(RwLock::new( (x, y) )),
             target: (x, y),
@@ -27,7 +27,7 @@ impl Point {
         }
     }
 
-    pub fn set_target(&mut self, target_x: f64, target_y: f64) {
+    pub fn set_target(&mut self, target_x: f32, target_y: f32) {
         
         if let Some(handle) = self.update_thread.take() {
             handle.join().unwrap();
@@ -83,7 +83,7 @@ impl Point {
     }
     */
 
-    pub fn get_current_position(&self) -> (f64, f64) {
+    pub fn get_current_position(&self) -> (f32, f32) {
         *self.position.read().unwrap()
     }
 

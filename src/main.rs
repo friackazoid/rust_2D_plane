@@ -1,17 +1,12 @@
 mod point;
+mod point_manager;
 
-use point::Point;
+use point_manager::PointManager;
 
 fn main() {
 
-    let mut point = Point::new(0.0, 0.0);
-    point.set_target(3.0, -2.0);
+    let pm = PointManager::new(10);
 
-
-    for _ in 0..10 {
-        let (x, y) = point.get_current_position();
-        println!("x: {}, y: {}", x, y);
-        std::thread::sleep(std::time::Duration::from_millis(1));
-    }
+    pm.print_points();
 
 }
