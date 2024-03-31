@@ -13,7 +13,7 @@ impl PointManager {
         let mut points = Vec::with_capacity(n);
         let mut rng = rand::thread_rng();
         for _ in 0..n {
-                points.push(Point::new(rng.gen_range(-10.0..10.0), rng.gen_range(-10.0..10.0)));
+            points.push(Point::new(rng.gen_range(-10.0..10.0), rng.gen_range(-10.0..10.0)));
         }
 
         PointManager { points, }
